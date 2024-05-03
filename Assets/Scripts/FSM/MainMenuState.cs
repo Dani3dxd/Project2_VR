@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class MainMenuState : IState
 {
     private GameManager gameManager;
@@ -34,6 +32,7 @@ public class MainMenuState : IState
         gameManager.stateMachine.TransitionTo(gameManager.stateMachine.gameplayState);
         
     }
+
     public void Tutorial()
     {
         Debug.Log("Estado main menu - updateTuto");
