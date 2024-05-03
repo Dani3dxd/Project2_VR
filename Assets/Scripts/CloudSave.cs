@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //
 using System;
+using TMPro;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
@@ -13,13 +14,16 @@ using UnityEngine.SceneManagement;
 
 public class CloudSave : Singleton<CloudSave>
 {
-    [SerializeField] GameObject blueBox;
-    [SerializeField] GameObject redBox;
+    [SerializeField] GameObject blueRing;
+    [SerializeField] GameObject yellowRing;
+    [SerializeField] GameObject redRing;
+
 
     struct dataToSave
     {
         public int scoreBlue;
         public int scoreRed;
+        public int scoreYellow;
     }
 
     async void Start()
@@ -33,7 +37,7 @@ public class CloudSave : Singleton<CloudSave>
         // Unity Login
         await SignInAnonymouslyAsync();
     }
-
+   
     void SetupEvents()
     {
         AuthenticationService.Instance.SignedIn += () => {
@@ -69,13 +73,16 @@ public class CloudSave : Singleton<CloudSave>
 
     public async void SaveDataCloud()
     {
-        Debug.Log("Voy a guardar");
-        BoxCounter counterBlue = blueBox.GetComponentInChildren<BoxCounter>();
-        BoxCounter counterRed = redBox.GetComponentInChildren<BoxCounter>();
+        BoxCounter counterBlue = blueRing.GetComponentInChildren<BoxCounter>();
+        BoxCounter counterRed = redRing.GetComponentInChildren<BoxCounter>();
+        BoxCounter counterYellow = yellowRing.GetComponentInChildren<BoxCounter>();
 
+        Debug.Log("Voy a guardar");
+       
         dataToSave performance = new();
         performance.scoreBlue = counterBlue.GetScore();
         performance.scoreRed = counterRed.GetScore();
+        performance.scoreYellow = counterYellow.GetScore();
 
         var data = new Dictionary<string, object> { { "Perfomance", performance } };
         await CloudSaveService.Instance.Data.Player.SaveAsync(data);

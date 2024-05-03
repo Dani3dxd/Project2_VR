@@ -12,12 +12,14 @@ public class StateMachine
     public MainMenuState mainMenuState;
     public GameplayState gameplayState;
     public ShowScoreState showScoreState;
+    public TutorialState tutorialState;
 
     public StateMachine(GameManager gameManager)
     {
         this.mainMenuState = new MainMenuState(gameManager);
         this.gameplayState = new GameplayState(gameManager);
         this.showScoreState = new ShowScoreState(gameManager);
+        this.tutorialState = new TutorialState(gameManager);
     }
 
     public void Initialize(IState startingState)

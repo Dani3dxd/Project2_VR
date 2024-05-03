@@ -17,8 +17,8 @@ public class UIBoxManager : MonoBehaviour
 
     private void ChangeUIScore()
     {
-        scoreTxt.text = "Puntaje en la caja: " + boxCounter.GetScore().ToString();
-        totalItemsTxt.text = "Total items en la caja: " + boxCounter.GetTotalItems().ToString();
+        scoreTxt.text = "Score: " + boxCounter.GetScore().ToString();
+        totalItemsTxt.text = "Total Spheres: " + boxCounter.GetTotalItems().ToString();
     }
 
     private void OnEnable()

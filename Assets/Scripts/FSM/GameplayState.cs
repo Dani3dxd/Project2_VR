@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Content.Interaction;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class GameplayState : IState
 {
@@ -14,6 +16,8 @@ public class GameplayState : IState
     public void Enter()
     {
         Debug.Log("Game play state - enter");
+        gameManager.tempoCanvas.SetActive(true);
+        gameManager.newGun.SetActive(true);
         gameManager.Gameplay();
     }
 
@@ -24,6 +28,7 @@ public class GameplayState : IState
 
     public void Exit()
     {
+        gameManager.tempoCanvas.SetActive(false);
         Debug.Log("Game play state - exit");
     }
 }

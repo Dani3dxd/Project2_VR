@@ -1,83 +1,94 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
     [Header("Spawn reference")]
-    [SerializeField] GameObject spawnArea;
-    Vector3 spawnAreaCenter;
-    Vector3 spawnAreaSize;
-
-    [Header("Product references")]
-    [SerializeField] int numberOfProducts = 1;
-
+    [SerializeField] public GameObject spawnArea;
+   
     [Header("Main menu")]
     [SerializeField] public GameObject mainMenuCanvas;
     [SerializeField] public Button startBtn;
 
+    [Header("Tutorial")]
+    [SerializeField] public GameObject tutorialCanvas;
+    [SerializeField] public Button mainMenuBtn;
+    [SerializeField] public Button tutoBtn;
+
+    [Header("Time menu")]
+    [SerializeField] public GameObject tempoCanvas;
+    [SerializeField] public TMP_Text tempoTxt;
+
+    [Header("Save Menu")]
+    [SerializeField] public GameObject saveMenuCanvas;
+    [SerializeField] public Button saveBtn;
+
     [Header("Gameplay")]
-    [SerializeField] float _duration = 5.0f;
+    [SerializeField] public float _duration = 60.0f;
 
+    [Header("Gun")]
+    [SerializeField] GameObject spawnGun;
+
+    [Header("Counters")]
+    [SerializeField] public GameObject blueRing;
+    [SerializeField] public GameObject yellowRing;
+    [SerializeField] public GameObject redRing;
+    [SerializeField] TMP_Text scoreTotalBlueTxt;
+    [SerializeField] TMP_Text scoreTotalYellowTxt;
+    [SerializeField] TMP_Text scoreTotalRedTxt;
+
+    public GameObject newGun;
     public StateMachine stateMachine;
-
-    // Start is called before the first frame update
     void Start()
     {
+        newGun = Instantiate(spawnGun, spawnArea.transform.position, spawnArea.transform.rotation, null);
         stateMachine = new(this);
         stateMachine.Initialize(stateMachine.mainMenuState);
     }
-
+    
     public void Gameplay()
     {
-        // spawn area
-        spawnAreaCenter = spawnArea.transform.position;
-        spawnAreaSize = spawnArea.transform.localScale;
-
-        // blue product factory
-        FactoryProductBlue factoryProductBlue = this.GetComponent<FactoryProductBlue>();
-        FactoryProductRed factoryProductRed = this.GetComponent<FactoryProductRed>();
-
-        // create n products
-        for (int i = 0; i < numberOfProducts; i++)
-        {
-            Vector3 randomPos = GetRandomPointInArea();
-            // verify if pos is occupied
-            int randomFactory = Random.Range(1, 3);
-            if (randomFactory == 1)
-            {
-                IProduct item = factoryProductBlue.GetProduct(randomPos);
-            }
-            else
-            {
-                IProduct item = factoryProductRed.GetProduct(randomPos);
-            }
-        }
-
+        newGun.SetActive(true);
+        //tempoTxt.text = _duration.ToString("F1") + " S";
         StartCoroutine("GameplayTime");
     }
+    
 
     IEnumerator GameplayTime()
     {
-        while(_duration > 0)
+        float newduration = _duration;
+        while(newduration > 0)
         {
-            _duration -= Time.deltaTime;
-            Debug.Log("Tiempo limite: " +  _duration.ToString("F1"));
+            newduration -= Time.deltaTime;
+            tempoTxt.text = newduration.ToString("F1") + " s";
+            Debug.Log("Limit time: " +  newduration.ToString("F1"));
             yield return null;
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
+        publishResults();
         stateMachine.TransitionTo(stateMachine.showScoreState);
     }
-
-    private Vector3 GetRandomPointInArea()
+    public void publishResults()
     {
-        float x = UnityEngine.Random.Range(spawnAreaCenter.x - spawnAreaSize.x / 2, spawnAreaCenter.x + spawnAreaSize.x / 2);
-        float y = UnityEngine.Random.Range(spawnAreaCenter.y - spawnAreaSize.y / 2, spawnAreaCenter.y + spawnAreaSize.y / 2);
-        float z = UnityEngine.Random.Range(spawnAreaCenter.z - spawnAreaSize.z / 2, spawnAreaCenter.z + spawnAreaSize.z / 2);
-        return new Vector3(x, y, z);
+        BoxCounter counterBlue = blueRing.GetComponentInChildren<BoxCounter>();
+        BoxCounter counterRed = redRing.GetComponentInChildren<BoxCounter>();
+        BoxCounter counterYellow = yellowRing.GetComponentInChildren<BoxCounter>();
+        scoreTotalBlueTxt.text = "you got " + counterBlue.GetScore().ToString() + " points on ring";
+        scoreTotalYellowTxt.text = "you got " + counterYellow.GetScore().ToString() + " points on ring";
+        scoreTotalRedTxt.text = "you got " + counterRed.GetScore().ToString() + " points on ring";
+        
+    }
+    public void Exit()
+    {
+        Application.Quit();
+        Debug.Log("Ha salido del juego");
     }
 }
