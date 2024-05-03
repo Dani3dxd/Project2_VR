@@ -30,12 +30,6 @@ public class ShowScoreState : IState
         gameManager.blueRing.GetComponentInChildren<BoxCounter>().ResetScore();
         gameManager.redRing.GetComponentInChildren<BoxCounter>().ResetScore();
         gameManager.yellowRing.GetComponentInChildren<BoxCounter>().ResetScore();
-        /*gameManager.blueRing.GetComponentInChildren<BoxCounter>().GetScore();
-        gameManager.redRing.GetComponentInChildren<BoxCounter>().GetScore();
-        gameManager.yellowRing.GetComponentInChildren<BoxCounter>().GetScore();
-        gameManager.blueRing.GetComponentInChildren<BoxCounter>().GetTotalItems();
-        gameManager.redRing.GetComponentInChildren<BoxCounter>().GetTotalItems();
-        gameManager.yellowRing.GetComponentInChildren<BoxCounter>().GetTotalItems();*/
         Debug.Log("Show score state - exit");
         gameManager.saveMenuCanvas.SetActive(false);
     }
