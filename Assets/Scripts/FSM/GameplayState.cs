@@ -15,6 +15,9 @@ public class GameplayState : IState
 
     public void Enter()
     {
+        gameManager.blueRing.GetComponentInChildren<BoxCounter>().ResetScore();
+        gameManager.redRing.GetComponentInChildren<BoxCounter>().ResetScore();
+        gameManager.yellowRing.GetComponentInChildren<BoxCounter>().ResetScore();
         Debug.Log("Game play state - enter");
         gameManager.tempoCanvas.SetActive(true);
         gameManager.newGun.SetActive(true);

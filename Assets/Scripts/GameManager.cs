@@ -72,7 +72,7 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("Limit time: " +  newduration.ToString("F1"));
             yield return null;
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         publishResults();
         stateMachine.TransitionTo(stateMachine.showScoreState);
     }

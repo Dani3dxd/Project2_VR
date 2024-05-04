@@ -26,9 +26,6 @@ public class ShowScoreState : IState
 
     public void Exit()
     {
-        gameManager.blueRing.GetComponentInChildren<BoxCounter>().ResetScore();
-        gameManager.redRing.GetComponentInChildren<BoxCounter>().ResetScore();
-        gameManager.yellowRing.GetComponentInChildren<BoxCounter>().ResetScore();
         Debug.Log("Show score state - exit");
         gameManager.saveMenuCanvas.SetActive(false);
     }

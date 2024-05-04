@@ -14,21 +14,19 @@ public class TutorialState : IState
     {
         Debug.Log("Entre a Tutorial");
         gameManager.mainMenuBtn.onClick.AddListener(Update);
-        gameManager.tutorialCanvas.SetActive(true);
         gameManager.newGun.SetActive(true);
+        gameManager.tutorialCanvas.SetActive(true);
+        
     }
 
     public void Update()
     {
-        gameManager.stateMachine.TransitionTo(gameManager.stateMachine.mainMenuState);
+        gameManager.stateMachine.TransitionTo(gameManager.stateMachine.gameplayState);
     }
     public void Exit() 
     {
         Debug.Log("Sale de Tutorial");
-        gameManager.blueRing.GetComponentInChildren<BoxCounter>().ResetScore();
-        gameManager.redRing.GetComponentInChildren<BoxCounter>().ResetScore();
-        gameManager.yellowRing.GetComponentInChildren<BoxCounter>().ResetScore();
-        gameManager.tutorialCanvas.SetActive(false);
         gameManager.newGun.SetActive(false);
+        gameManager.tutorialCanvas.SetActive(false);
     }
 }
