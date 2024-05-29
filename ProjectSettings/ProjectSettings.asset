@@ -160,7 +160,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.master_vr_class
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -772,8 +773,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: master_vr_class
-  metroPackageVersion: 
+  metroPackageName: mastervrclass
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -781,7 +782,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: master_vr_class
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: master_vr_class
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

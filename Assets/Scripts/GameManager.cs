@@ -6,7 +6,6 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>

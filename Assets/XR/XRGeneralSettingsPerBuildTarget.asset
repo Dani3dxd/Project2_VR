@@ -17,7 +17,6 @@ MonoBehaviour:
   m_AutomaticRunning: 0
   m_Loaders:
   - {fileID: 11400000, guid: 956a970724fca2243839fb1091d16151, type: 2}
-  - {fileID: 11400000, guid: 9ece7e11a3f892c41ba92b689274e5d1, type: 2}
 --- !u!114 &-4267172366173478493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +34,22 @@ MonoBehaviour:
   m_AutomaticRunning: 0
   m_Loaders:
   - {fileID: 11400000, guid: 956a970724fca2243839fb1091d16151, type: 2}
-  - {fileID: 11400000, guid: 9ece7e11a3f892c41ba92b689274e5d1, type: 2}
+--- !u!114 &-3680625548561706609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c3631f5e58749a59194e0cf6baf6d5, type: 3}
+  m_Name: Metro Providers
+  m_EditorClassIdentifier: 
+  m_RequiresSettingsUpdate: 0
+  m_AutomaticLoading: 0
+  m_AutomaticRunning: 0
+  m_Loaders: []
 --- !u!114 &-2386983407719495140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,10 +76,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2dc886499c26824283350fa532d087d, type: 3}
   m_Name: XRGeneralSettingsPerBuildTarget
   m_EditorClassIdentifier: 
-  Keys: 0100000007000000
+  Keys: 01000000070000000e000000
   Values:
   - {fileID: 1494327098226666261}
   - {fileID: -2386983407719495140}
+  - {fileID: 7237879799054582369}
 --- !u!114 &1494327098226666261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,4 +94,18 @@ MonoBehaviour:
   m_Name: Standalone Settings
   m_EditorClassIdentifier: 
   m_LoaderManagerInstance: {fileID: -4267172366173478493}
+  m_InitManagerOnStart: 1
+--- !u!114 &7237879799054582369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d236b7d11115f2143951f1e14045df39, type: 3}
+  m_Name: Metro Settings
+  m_EditorClassIdentifier: 
+  m_LoaderManagerInstance: {fileID: -3680625548561706609}
   m_InitManagerOnStart: 1
